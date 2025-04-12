@@ -1,0 +1,32 @@
+# __pycache__ y archivos compilados
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos del entorno virtual
+venv/
+env/
+.venv/
+.env/
+
+# Archivos de configuración de entorno
+*.env
+
+# Configs de editor o sistema
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Archivos de logs o temporales
+*.log
+*.tmp
+
+# Archivos de servidor local
+*.db
+instance/
+*.sqlite3
+
+# Archivos del navegador y HTML temporales
+*.html~
+*.bak

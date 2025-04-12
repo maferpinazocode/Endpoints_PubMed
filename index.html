@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscador de Papers</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { padding: 8px; width: 300px; }
+    button { padding: 8px 12px; margin-left: 8px; }
+    ul { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>🔎 Buscar artículos científicos (PubMed)</h2>
+  <input type="text" id="searchTerm" placeholder="Ej: cancer, diabetes..." />
+  <button onclick="buscar()">Buscar</button>
+
+  <ul id="resultados"></ul>
+
+  <script>
+    function buscar() {
+      const term = document.getElementById("searchTerm").value;
+      if (!term) return;
+
+      fetch(`http://127.0.0.1:5000/papers?term=${term}`)
+        .then(res => res.json())
+        .then(data => {
+          const lista = document.getElementById("resultados");
+          lista.innerHTML = "";
+          data.titles.forEach(titulo => {
+            const li = document.createElement("li");
+            li.textContent = titulo;
+            lista.appendChild(li);
+          });
+        })
+        .catch(err => {
+          console.error("Error:", err);
+          alert("Hubo un error al buscar los artículos.");
+        });
+    }
+  </script>
+</body>
+</html>
